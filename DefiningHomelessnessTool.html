@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUD Homelessness Assessment Screener</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #1a1f3a;
+            border: 1px solid #2a3050;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .header-status {
+            display: flex;
+            gap: 40px;
+            text-align: right;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .status-label {
+            font-size: 12px;
+            color: #8a8f9e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .status-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00d98e;
+        }
+
+        .main-card {
+            background: #1a1f3a;
+            border: 1px solid #2a3050;
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .qualification-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .qualification-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #00d98e;
+            margin-bottom: 8px;
+        }
+
+        .qualification-subtitle {
+            font-size: 16px;
+            color: #b0b5c0;
+        }
+
+        .qualification-title.literally-homeless {
+            color: #ff6b6b;
+        }
+
+        .qualification-title.imminent-risk {
+            color: #ffa500;
+        }
+
+        .qualification-title.chronically-homeless {
+            color: #ff9e64;
+        }
+
+        .qualification-title.not-homeless {
+            color: #8a8f9e;
+        }
+
+        .form-section {
+            background: #252d4a;
+            border: 1px solid #2a3050;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2a3050;
+            padding-bottom: 12px;
+        }
+
+        .step-indicator {
+            font-size: 12px;
+            color: #8a8f9e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checkbox-label:hover {
+            background: #1a1f3a;
+        }
+
+        .checkbox-label input[type="checkbox"],
+        .checkbox-label input[type="radio"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checkbox-label span {
+            font-size: 14px;
+            color: #e0e0e0;
+            flex: 1;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .form-label-secondary {
+            font-size: 12px;
+            color: #8a8f9e;
+            font-weight: 400;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: 2px solid #3a4060;
+            background: transparent;
+            color: #b0b5c0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            border-color: #4a5070;
+            background: #2a3250;
+            color: #e0e0e0;
+        }
+
+        .btn.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .section-divider {
+            border-top: 1px solid #2a3050;
+            margin: 24px 0;
+        }
+
+        .result-section {
+            background: #252d4a;
+            border: 2px solid #2a3050;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .result-section.literally-homeless {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.08);
+        }
+
+        .result-section.imminent-risk {
+            border-color: #ffa500;
+            background: rgba(255, 165, 0, 0.08);
+        }
+
+        .result-section.chronically-homeless {
+            border-color: #ff9e64;
+            background: rgba(255, 158, 100, 0.08);
+        }
+
+        .result-section.not-homeless {
+            border-color: #8a8f9e;
+            background: rgba(138, 143, 158, 0.08);
+        }
+
+        .result-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .result-title.literally-homeless {
+            color: #ff6b6b;
+        }
+
+        .result-title.imminent-risk {
+            color: #ffa500;
+        }
+
+        .result-title.chronically-homeless {
+            color: #ff9e64;
+        }
+
+        .result-title.not-homeless {
+            color: #8a8f9e;
+        }
+
+        .result-subtitle {
+            font-size: 14px;
+            color: #b0b5c0;
+            margin-bottom: 16px;
+        }
+
+        .result-details {
+            font-size: 14px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .result-details.literally-homeless {
+            border-color: #ff6b6b;
+            color: #ffc4c4;
+        }
+
+        .result-details.imminent-risk {
+            border-color: #ffa500;
+            color: #ffd699;
+        }
+
+        .result-details.chronically-homeless {
+            border-color: #ff9e64;
+            color: #ffd4b0;
+        }
+
+        .result-details.not-homeless {
+            border-color: #8a8f9e;
+            color: #b0b5c0;
+        }
+
+        .bottom-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            border: 1px solid #2563eb;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #3a4060;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #b0b5c0;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #4a5070;
+            color: #fff;
+        }
+
+        .info-box {
+            background: #0a0e27;
+            border: 1px solid #2a3050;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            color: #8a8f9e;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .header-status {
+                flex-direction: row;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-title">HUD Homelessness Screener</div>
+            <div class="header-status">
+                <div class="status-item">
+                    <div class="status-label">Assessment</div>
+                    <div class="status-value" id="assessmentStatus">PENDING</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Category</div>
+                    <div class="status-value" id="categoryStatus">UNKNOWN</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-card">
+            <div class="qualification-header">
+                <div class="qualification-title" id="qualTitle">HUD HOMELESSNESS ASSESSMENT</div>
+                <div class="qualification-subtitle" id="qualSubtitle">Determine client homelessness category</div>
+            </div>
+
+            <!-- STEP 1: Literally Homeless -->
+            <div class="form-section">
+                <div class="step-indicator">Step 1 of 3</div>
+                <div class="form-section-title">Current Living Situation</div>
+                
+                <div class="form-label">Is the client currently living in any of these situations?</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="outside" onchange="assessStatus()">
+                        <span>Outside (street, park, bench, etc.)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="structure" onchange="assessStatus()">
+                        <span>Structure not designated for habitation</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="vehicle" onchange="assessStatus()">
+                        <span>Vehicle/camper (not intended as permanent housing)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="emergency" onchange="assessStatus()">
+                        <span>Emergency shelter or transitional housing unit</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="fleeing" onchange="assessStatus()">
+                        <span>Fleeing/attempting to flee domestic violence</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="hotel" onchange="assessStatus()">
+                        <span>Hotel/motel paid by Charitable/gov program</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="institution" onchange="assessStatus()">
+                        <span>Exited institution (lived 90 days or less, was literally homeless before entering)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="literally" value="none-above" onchange="assessStatus()">
+                        <span><strong>None of the above</strong></span>
+                    </label>
+                </div>
+
+                <div class="info-box">
+                    ✓ If yes to any criterion above, client is <strong>Literally Homeless</strong>
+                </div>
+            </div>
+
+            <!-- STEP 2: Imminent Risk -->
+            <div class="form-section" id="step2" style="display: none;">
+                <div class="step-indicator">Step 2 of 3</div>
+                <div class="form-section-title">Housing Situation</div>
+                
+                <div class="form-label">Where are they currently staying?</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="imminent" value="hotel-not-paid" onchange="assessStatus()">
+                        <span>Hotel/motel NOT paid by Charitable/gov program</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="imminent" value="couch-surfing" onchange="assessStatus()">
+                        <span>With family or friends (couch surfing)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="imminent" value="place-rent" onchange="assessStatus()">
+                        <span>Place you rent/own</span>
+                    </label>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="form-label">Housing loss expected within 14 days?</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setLoss14(true)">Yes</button>
+                    <button class="btn" onclick="setLoss14(false)">No</button>
+                </div>
+
+                <div class="form-label" style="margin-top: 20px;">Has a subsequent residence been identified?</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setResidence(true)">Yes</button>
+                    <button class="btn" onclick="setResidence(false)">No</button>
+                </div>
+
+                <div class="form-label" style="margin-top: 20px;">Do they lack resources/support networks for other permanent housing?</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setResources(true)">Yes</button>
+                    <button class="btn" onclick="setResources(false)">No</button>
+                </div>
+
+                <div class="info-box">
+                    ✓ All four conditions must be met for <strong>Imminent Risk</strong>
+                </div>
+            </div>
+
+            <!-- STEP 3: Chronically Homeless -->
+            <div class="form-section" id="step3" style="display: none;">
+                <div class="step-indicator">Step 3 of 3</div>
+                <div class="form-section-title">Homelessness History</div>
+                
+                <div class="form-label">Has experienced 12+ consecutive months of continuous literal homelessness?</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setChronic12(true)">Yes</button>
+                    <button class="btn" onclick="setChronic12(false)">No</button>
+                </div>
+
+                <div class="form-label" style="margin-top: 20px;">In past 3 years, literally homeless for 12+ months in 4+ separate occurrences?</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setChronic3Year(true)">Yes</button>
+                    <button class="btn" onclick="setChronic3Year(false)">No</button>
+                </div>
+
+                <div class="form-label" style="margin-top: 20px;">Has a disability that prevents sustainable housing?</div>
+                <div class="form-label-secondary" style="margin-bottom: 12px;">Physical, intellectual, serious mental illness, or substance use disorder</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setDisability(true)">Yes</button>
+                    <button class="btn" onclick="setDisability(false)">No</button>
+                </div>
+
+                <div class="info-box">
+                    ✓ Requires: (1) 12+ months homelessness history AND (2) Disability preventing sustainable housing
+                </div>
+            </div>
+
+            <!-- RESULT -->
+            <div class="result-section" id="result">
+                <div class="result-title" id="resultTitle">Assessment Result</div>
+                <div class="result-subtitle" id="resultCategory">Category</div>
+                <div class="result-details" id="resultDetails">Assessment details will appear here</div>
+            </div>
+
+            <div class="bottom-buttons">
+                <button class="btn-primary" onclick="finalizeAssessment()">Complete Assessment</button>
+                <button class="btn-secondary" onclick="resetForm()">Clear Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        const state = {
+            literally: new Set(),
+            imminent: new Set(),
+            loss14: null,
+            residence: null,
+            resources: null,
+            chronic12: null,
+            chronic3Year: null,
+            disability: null
+        };
+
+        // Handle literally homeless checkboxes
+        document.querySelectorAll('input[name="literally"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    state.literally.add(this.value);
+                } else {
+                    state.literally.delete(this.value);
+                }
+                assessStatus();
+            });
+        });
+
+        // Handle imminent checkboxes
+        document.querySelectorAll('input[name="imminent"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    state.imminent.add(this.value);
+                } else {
+                    state.imminent.delete(this.value);
+                }
+                assessStatus();
+            });
+        });
+
+        function setLoss14(value) {
+            state.loss14 = value;
+            const yesBtn = document.querySelector('button[onclick="setLoss14(true)"]');
+            const noBtn = document.querySelector('button[onclick="setLoss14(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessStatus();
+        }
+
+        function setResidence(value) {
+            state.residence = value;
+            const yesBtn = document.querySelector('button[onclick="setResidence(true)"]');
+            const noBtn = document.querySelector('button[onclick="setResidence(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessStatus();
+        }
+
+        function setResources(value) {
+            state.resources = value;
+            const yesBtn = document.querySelector('button[onclick="setResources(true)"]');
+            const noBtn = document.querySelector('button[onclick="setResources(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessStatus();
+        }
+
+        function setChronic12(value) {
+            state.chronic12 = value;
+            const yesBtn = document.querySelector('button[onclick="setChronic12(true)"]');
+            const noBtn = document.querySelector('button[onclick="setChronic12(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessStatus();
+        }
+
+        function setChronic3Year(value) {
+            state.chronic3Year = value;
+            const yesBtn = document.querySelector('button[onclick="setChronic3Year(true)"]');
+            const noBtn = document.querySelector('button[onclick="setChronic3Year(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessStatus();
+        }
+
+        function setDisability(value) {
+            state.disability = value;
+            const yesBtn = document.querySelector('button[onclick="setDisability(true)"]');
+            const noBtn = document.querySelector('button[onclick="setDisability(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessStatus();
+        }
+
+        function assessStatus() {
+            // Get all literally homeless criteria except "none of the above"
+            const literallyHomelessCriteria = Array.from(state.literally).filter(v => v !== 'none-above');
+            const noneOfAboveSelected = state.literally.has('none-above');
+            const isLiterallyHomeless = literallyHomelessCriteria.length > 0;
+
+            if (isLiterallyHomeless) {
+                // Literally homeless - hide step 2, show step 3 for chronic screening
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'block';
+                return;
+            }
+
+            if (noneOfAboveSelected) {
+                // None of the above - show step 2 (imminent risk)
+                document.getElementById('step2').style.display = 'block';
+                document.getElementById('step3').style.display = 'none';
+                return;
+            }
+
+            // Nothing selected yet
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+        }
+
+        function finalizeAssessment() {
+            // Get all literally homeless criteria except "none of the above"
+            const literallyHomelessCriteria = Array.from(state.literally).filter(v => v !== 'none-above');
+            const noneOfAboveSelected = state.literally.has('none-above');
+            const isLiterallyHomeless = literallyHomelessCriteria.length > 0;
+            
+            let category, title, subtitle, details, categoryName;
+
+            if (isLiterallyHomeless) {
+                // Check if also chronically homeless
+                const chronic12 = state.chronic12 === true;
+                const chronic3Year = state.chronic3Year === true;
+                const hasDisability = state.disability === true;
+                const isChronicallyHomeless = (chronic12 || chronic3Year) && hasDisability;
+
+                if (isChronicallyHomeless) {
+                    category = 'chronically-homeless';
+                    categoryName = 'CATEGORY 4: CHRONICALLY HOMELESS';
+                    title = 'CHRONICALLY HOMELESS';
+                    subtitle = 'HUD Definition Category 4';
+                    details = 'The client is literally homeless AND has an extensive homelessness history combined with a disability that impedes sustainable housing. They meet the criteria for Chronically Homeless.';
+                } else {
+                    category = 'literally-homeless';
+                    categoryName = 'CATEGORY 1: LITERALLY HOMELESS';
+                    title = 'LITERALLY HOMELESS';
+                    subtitle = 'HUD Definition Category 1';
+                    details = 'The client meets HUD\'s definition of literally homeless based on their current living situation or recent exit from an institution.';
+                }
+            } else if (noneOfAboveSelected) {
+                // Not literally homeless - check imminent risk
+                const hasImminentCriteria = state.imminent.size > 0;
+                const meetsImminentRisk = hasImminentCriteria && state.loss14 === true && state.residence === false && state.resources === true;
+
+                if (meetsImminentRisk) {
+                    category = 'imminent-risk';
+                    categoryName = 'CATEGORY 2: IMMINENT RISK OF HOMELESSNESS';
+                    title = 'IMMINENT RISK OF HOMELESSNESS';
+                    subtitle = 'HUD Definition Category 2';
+                    details = 'The client will likely become homeless within 14 days and lacks resources and support networks to prevent it.';
+                } else {
+                    category = 'not-homeless';
+                    categoryName = 'NOT HOMELESS (per HUD definition)';
+                    title = 'NOT HOMELESS';
+                    subtitle = 'Does not meet HUD homelessness criteria';
+                    details = 'The client does not meet HUD\'s definition of homelessness based on the provided criteria. However, they may still benefit from housing support services.';
+                }
+            } else {
+                category = 'not-homeless';
+                categoryName = 'NOT HOMELESS (per HUD definition)';
+                title = 'NOT HOMELESS';
+                subtitle = 'Does not meet HUD homelessness criteria';
+                details = 'Please complete all steps before finalizing the assessment.';
+            }
+
+            document.getElementById('result').className = `result-section show ${category}`;
+            document.getElementById('resultTitle').className = `result-title ${category}`;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultCategory').textContent = categoryName;
+            document.getElementById('resultDetails').className = `result-details ${category}`;
+            document.getElementById('resultDetails').textContent = details;
+
+            document.getElementById('qualTitle').className = `qualification-title ${category}`;
+            document.getElementById('qualTitle').textContent = title;
+            document.getElementById('qualSubtitle').textContent = categoryName;
+
+            document.getElementById('assessmentStatus').textContent = 'COMPLETE';
+            document.getElementById('categoryStatus').textContent = categoryName.split(':')[0].trim();
+
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function resetForm() {
+            state.literally.clear();
+            state.imminent.clear();
+            state.loss14 = null;
+            state.residence = null;
+            state.resources = null;
+            state.chronic12 = null;
+            state.chronic3Year = null;
+            state.disability = null;
+
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('button.btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+
+            document.getElementById('qualTitle').className = 'qualification-title';
+            document.getElementById('qualTitle').textContent = 'HUD HOMELESSNESS ASSESSMENT';
+            document.getElementById('qualSubtitle').textContent = 'Determine client homelessness category';
+            document.getElementById('assessmentStatus').textContent = 'PENDING';
+            document.getElementById('categoryStatus').textContent = 'UNKNOWN';
+        }
+
+        // Initialize
+        assessStatus();
+    </script>
+</body>
+</html>
