@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,16 +35,34 @@
         }
 
         .header-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 600;
             color: #fff;
             letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-logo {
+            width: 88px;
+            height: 88px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px;
+            flex-shrink: 0;
         }
 
         .header-status {
             display: flex;
-            gap: 40px;
+            gap: 20px;
             text-align: right;
+            align-items: center;
         }
 
         .status-item {
@@ -68,11 +85,93 @@
             color: #00d98e;
         }
 
+        .header-assessment {
+            min-width: 110px;
+        }
+
+        .usage-panel {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-top: 20px;
+            padding: 14px 16px;
+            border: 1px solid #2a3050;
+            border-radius: 10px;
+            background: rgba(10, 14, 39, 0.45);
+        }
+
+        .usage-summary {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            color: #8a8f9e;
+            font-size: 12px;
+        }
+
+        .usage-metric {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .usage-metric strong {
+            color: #b8becb;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .mode-selector {
+            background: #1a1f3a;
+            border: 1px solid #2a3050;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .mode-selector h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        .mode-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .mode-btn {
+            background: transparent;
+            border: 2px solid #2a3050;
+            padding: 24px;
+            border-radius: 12px;
+            color: #b0b5c0;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
         .main-card {
             background: #1a1f3a;
             border: 1px solid #2a3050;
             border-radius: 12px;
             padding: 40px;
+            display: none;
+        }
+
+        .main-card.active {
+            display: block;
         }
 
         .qualification-header {
@@ -106,6 +205,18 @@
 
         .qualification-title.not-homeless {
             color: #8a8f9e;
+        }
+
+        .qualification-title.stably-housed {
+            color: #00d98e;
+        }
+
+        .qualification-title.unstably-housed {
+            color: #ff6b6b;
+        }
+
+        .qualification-title.neutral-exit {
+            color: #ffa500;
         }
 
         .form-section {
@@ -168,33 +279,33 @@
             flex: 1;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
         .form-label {
             font-size: 14px;
             font-weight: 500;
             color: #fff;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .form-label:first-of-type {
+            margin-top: 0;
+        }
+
+        .form-label.error {
+            color: #ff6b6b;
+        }
+
+        .form-label.error::after {
+            content: " (required)";
+            color: #ff6b6b;
+            font-weight: 600;
         }
 
         .form-label-secondary {
             font-size: 12px;
             color: #8a8f9e;
             font-weight: 400;
+            margin-bottom: 8px;
         }
 
         .button-group {
@@ -267,6 +378,21 @@
             background: rgba(138, 143, 158, 0.08);
         }
 
+        .result-section.stably-housed {
+            border-color: #00d98e;
+            background: rgba(0, 217, 142, 0.08);
+        }
+
+        .result-section.unstably-housed {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.08);
+        }
+
+        .result-section.neutral-exit {
+            border-color: #ffa500;
+            background: rgba(255, 165, 0, 0.08);
+        }
+
         .result-title {
             font-size: 24px;
             font-weight: 600;
@@ -289,6 +415,18 @@
             color: #8a8f9e;
         }
 
+        .result-title.stably-housed {
+            color: #00d98e;
+        }
+
+        .result-title.unstably-housed {
+            color: #ff6b6b;
+        }
+
+        .result-title.neutral-exit {
+            color: #ffa500;
+        }
+
         .result-subtitle {
             font-size: 14px;
             color: #b0b5c0;
@@ -305,64 +443,117 @@
             border-radius: 4px;
         }
 
-        .result-details.literally-homeless {
-            border-color: #ff6b6b;
-            color: #ffc4c4;
+        .housing-recommendation {
+            background: #1a1f3a;
+            border: 1px solid #2a3050;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
         }
 
-        .result-details.imminent-risk {
-            border-color: #ffa500;
-            color: #ffd699;
+        .housing-recommendation h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00d98e;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .result-details.chronically-homeless {
-            border-color: #ff9e64;
-            color: #ffd4b0;
+        .housing-recommendation ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .result-details.not-homeless {
-            border-color: #8a8f9e;
+        .housing-recommendation li {
+            font-size: 13px;
             color: #b0b5c0;
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .housing-recommendation li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00d98e;
+            font-weight: 600;
+        }
+
+        .warning-box {
+            background: rgba(255, 165, 0, 0.15);
+            border: 1px solid #ffa500;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #ffd699;
+            line-height: 1.5;
+        }
+
+        .stats-box {
+            background: #0a0e27;
+            border: 1px solid #2a3050;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #8a8f9e;
+            line-height: 1.6;
+        }
+
+        .stats-box strong {
+            color: #00d98e;
         }
 
         .bottom-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: none;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 16px;
+            align-items: end;
+            margin-top: 24px;
+        }
+
+        .bottom-actions {
+            display: flex;
             gap: 12px;
-            margin-top: 32px;
+            flex-wrap: wrap;
         }
 
         .btn-primary {
-            background: #2563eb;
-            border: 1px solid #2563eb;
-            padding: 12px 24px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 14px 28px;
             border-radius: 8px;
-            color: #fff;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background: #1d4ed8;
-            border-color: #1d4ed8;
+            background: #0052a3;
+            transform: translateY(-1px);
         }
 
-        .btn-secondary {
+        .btn-tertiary {
             background: transparent;
-            border: 1px solid #3a4060;
-            padding: 12px 24px;
-            border-radius: 8px;
             color: #b0b5c0;
+            border: 1px solid #2a3050;
+            padding: 14px 24px;
+            border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        .btn-secondary:hover {
-            border-color: #4a5070;
+        .btn-tertiary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #4a5480;
             color: #fff;
         }
 
@@ -383,13 +574,21 @@
                 text-align: center;
             }
 
+            .header-brand {
+                flex-direction: column;
+            }
+
+            .header-title {
+                white-space: normal;
+            }
+
             .header-status {
                 flex-direction: row;
                 gap: 20px;
                 justify-content: center;
             }
 
-            .form-row {
+            .mode-buttons {
                 grid-template-columns: 1fr;
             }
 
@@ -402,62 +601,103 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="header-title">HUD Homelessness Screener</div>
+            <div class="header-brand">
+                <img class="header-logo" src="../Pictures/Icons General Images and Buttons/Changing Homelessness Icon HD PNG.png" alt="Changing Homelessness logo">
+                <div class="header-title">CoC Homeless Status Assessment Tool</div>
+            </div>
             <div class="header-status">
-                <div class="status-item">
+                <div class="status-item header-assessment">
                     <div class="status-label">Assessment</div>
                     <div class="status-value" id="assessmentStatus">PENDING</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-label">Category</div>
-                    <div class="status-value" id="categoryStatus">UNKNOWN</div>
                 </div>
             </div>
         </div>
 
-        <div class="main-card">
-            <div class="qualification-header">
-                <div class="qualification-title" id="qualTitle">HUD HOMELESSNESS ASSESSMENT</div>
-                <div class="qualification-subtitle" id="qualSubtitle">Determine client homelessness category</div>
+        <!-- MODE SELECTOR -->
+        <div class="mode-selector" id="modeSelector">
+            <h2>Select Assessment Type</h2>
+            <div class="mode-buttons">
+                <button class="mode-btn" onclick="selectMode('entry')">
+                    Entry - Prior Living Situation
+                </button>
+                <button class="mode-btn" onclick="selectMode('exit')">
+                    Non-Entry (Exit, etc.) - Current Living Situation
+                </button>
+            </div>
+        </div>
+
+        <!-- ENTRY MODE (Prior Living Situation) -->
+        <div class="main-card" id="entryMode">
+            <div class="qualification-header" style="display: none;">
+                <div class="qualification-title" id="entryQualTitle">HUD ASSESSMENT</div>
+                <div class="qualification-subtitle" id="entryQualSubtitle">Determine client homelessness category</div>
             </div>
 
-            <!-- STEP 1: Literally Homeless -->
+            <!-- ENTRY STEP 1: Literally Homeless -->
             <div class="form-section">
-                <div class="step-indicator">Step 1 of 3</div>
-                <div class="form-section-title">Current Living Situation</div>
+                <div class="step-indicator">Step 1 of 1</div>
+                <div class="form-section-title">Prior Living Situation at Entry</div>
                 
+                <div class="form-label">Is the client fleeing or attempting to flee domestic violence?</div>
+                <div class="button-group" style="margin-bottom: 20px;">
+                    <button class="btn" onclick="setEntryDvAtRisk(true)">Yes</button>
+                    <button class="btn" onclick="setEntryDvAtRisk(false)">No</button>
+                </div>
+
+                <div id="entryDvStatusHelp" style="display: none; margin-bottom: 20px; padding: 18px 20px; background: rgba(255, 107, 107, 0.16); border: 1px solid rgba(255, 107, 107, 0.55); border-left: 5px solid #ff6b6b; border-radius: 10px; color: #ffd7d7; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);">
+                    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ff9b9b; margin-bottom: 8px;">HUD DV Override</div>
+                    <div style="font-size: 15px; line-height: 1.6;"><strong>Regardless of the client's current living situation, HUD considers the client literally homeless if they are fleeing or attempting to flee domestic violence.</strong> Their current setting is not treated as a safe place meant for habitation. Continue below to populate the correct selection for the ClientTrack living situation.</div>
+                </div>
+
+                <div id="entryDvFollowup" style="display: none;">
+
                 <div class="form-label">Is the client currently living in any of these situations?</div>
                 <div class="checkbox-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="outside" onchange="assessStatus()">
+                        <input type="radio" name="entry-literally" value="outside" onchange="assessEntryStatus()">
                         <span>Outside (street, park, bench, etc.)</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="structure" onchange="assessStatus()">
+                        <input type="radio" name="entry-literally" value="structure" onchange="assessEntryStatus()">
                         <span>Structure not designated for habitation</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="vehicle" onchange="assessStatus()">
-                        <span>Vehicle/camper (not intended as permanent housing)</span>
+                        <input type="radio" name="entry-literally" value="vehicle" onchange="assessEntryStatus()">
+                        <span>Vehicle/camper (lacks formal residency signified by lack of consistent and legal access to water, sewer, and electricity.)</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="emergency" onchange="assessStatus()">
+                        <input type="radio" name="entry-literally" value="emergency" onchange="assessEntryStatus()">
                         <span>Emergency shelter or transitional housing unit</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="fleeing" onchange="assessStatus()">
-                        <span>Fleeing/attempting to flee domestic violence</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="hotel" onchange="assessStatus()">
+                        <input type="radio" name="entry-literally" value="hotel" onchange="assessEntryStatus()">
                         <span>Hotel/motel paid by Charitable/gov program</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="institution" onchange="assessStatus()">
-                        <span>Exited institution (lived 90 days or less, was literally homeless before entering)</span>
+                        <input type="radio" name="entry-literally" value="institution" onchange="assessEntryStatus()">
+                        <span>Exited Institution (example, hospital, jail, etc.)</span>
                     </label>
+
+                    <div id="institutionDetails" style="display: none; background: #1a1f3a; padding: 16px; border-radius: 6px; margin: 12px 0 12px 30px; border-left: 3px solid #0066cc;">
+                        <div class="form-label" style="margin-bottom: 12px;">Which type of institution did they exit?</div>
+                        <select id="institutionType" onchange="assessEntryStatus()" style="width: 100%; padding: 10px 12px; background: #252d4a; border: 1px solid #2a3050; color: #e0e0e0; border-radius: 6px; font-size: 14px; margin-bottom: 16px;">
+                            <option value="">Select institution type...</option>
+                            <option value="foster-care">Foster care home or foster care group home</option>
+                            <option value="hospital">Hospital or other residential non-psychiatric medical facility</option>
+                            <option value="jail">Jail, prison or juvenile detention facility</option>
+                            <option value="long-term-care">Long-term care facility or nursing home</option>
+                            <option value="psychiatric">Psychiatric hospital or other psychiatric facility</option>
+                            <option value="substance-abuse">Substance abuse treatment facility or detox center</option>
+                        </select>
+
+                        <div class="form-label" style="margin-bottom: 12px;">Did the client stay 90 days or more?</div>
+                        <div class="button-group">
+                            <button class="btn" onclick="setEntryInstitutionDays(true)">Yes</button>
+                            <button class="btn" onclick="setEntryInstitutionDays(false)">No</button>
+                        </div>
+                    </div>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="literally" value="none-above" onchange="assessStatus()">
+                        <input type="radio" name="entry-literally" value="none-above" onchange="assessEntryStatus()">
                         <span><strong>None of the above</strong></span>
                     </label>
                 </div>
@@ -465,76 +705,86 @@
                 <div class="info-box">
                     ✓ If yes to any criterion above, client is <strong>Literally Homeless</strong>
                 </div>
+                </div>
             </div>
 
-            <!-- STEP 2: Imminent Risk -->
-            <div class="form-section" id="step2" style="display: none;">
+            <!-- ENTRY STEP 2: Imminent Risk -->
+            <div class="form-section" id="entryStep2" style="display: none;">
                 <div class="step-indicator">Step 2 of 3</div>
-                <div class="form-section-title">Housing Situation</div>
+                <div class="form-section-title">Imminent Risk of Homelessness Screening</div>
                 
                 <div class="form-label">Where are they currently staying?</div>
                 <div class="checkbox-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="imminent" value="hotel-not-paid" onchange="assessStatus()">
-                        <span>Hotel/motel NOT paid by Charitable/gov program</span>
+                        <input type="radio" name="entry-imminent" value="hotel-not-paid" onchange="assessEntryStatus()">
+                        <span>Hotel or motel NOT paid by Charitable/gov program</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="imminent" value="couch-surfing" onchange="assessStatus()">
-                        <span>With family or friends (couch surfing)</span>
+                        <input type="radio" name="entry-imminent" value="friend" onchange="assessEntryStatus()">
+                        <span>Staying or living in a friend's room, apartment or house</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="imminent" value="place-rent" onchange="assessStatus()">
+                        <input type="radio" name="entry-imminent" value="family" onchange="assessEntryStatus()">
+                        <span>Staying or living in a family member's room, apartment or house</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="entry-imminent" value="place-rent" onchange="assessEntryStatus()">
                         <span>Place you rent/own</span>
                     </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="entry-imminent" value="none-above" onchange="assessEntryStatus()">
+                        <span><strong>None of the above</strong></span>
+                    </label>
                 </div>
+
 
                 <div class="section-divider"></div>
 
                 <div class="form-label">Housing loss expected within 14 days?</div>
                 <div class="button-group">
-                    <button class="btn" onclick="setLoss14(true)">Yes</button>
-                    <button class="btn" onclick="setLoss14(false)">No</button>
+                    <button class="btn" onclick="setEntryLoss14(true)">Yes</button>
+                    <button class="btn" onclick="setEntryLoss14(false)">No</button>
                 </div>
 
-                <div class="form-label" style="margin-top: 20px;">Has a subsequent residence been identified?</div>
+                <div class="form-label" style="margin-top: 20px;">Is there no subsequent residence identified?</div>
                 <div class="button-group">
-                    <button class="btn" onclick="setResidence(true)">Yes</button>
-                    <button class="btn" onclick="setResidence(false)">No</button>
+                    <button class="btn" onclick="setEntryResidence(true)">Yes</button>
+                    <button class="btn" onclick="setEntryResidence(false)">No</button>
                 </div>
 
                 <div class="form-label" style="margin-top: 20px;">Do they lack resources/support networks for other permanent housing?</div>
                 <div class="button-group">
-                    <button class="btn" onclick="setResources(true)">Yes</button>
-                    <button class="btn" onclick="setResources(false)">No</button>
+                    <button class="btn" onclick="setEntryResources(true)">Yes</button>
+                    <button class="btn" onclick="setEntryResources(false)">No</button>
                 </div>
 
                 <div class="info-box">
-                    ✓ All four conditions must be met for <strong>Imminent Risk</strong>
+                    All three conditions below must be <strong>Yes</strong> for <strong>Imminent Risk</strong>
                 </div>
             </div>
 
-            <!-- STEP 3: Chronically Homeless -->
-            <div class="form-section" id="step3" style="display: none;">
+            <!-- ENTRY STEP 3: Chronically Homeless -->
+            <div class="form-section" id="entryStep3" style="display: none;">
                 <div class="step-indicator">Step 3 of 3</div>
-                <div class="form-section-title">Homelessness History</div>
+                <div class="form-section-title">Chronic Homelessness Screening</div>
                 
                 <div class="form-label">Has experienced 12+ consecutive months of continuous literal homelessness?</div>
                 <div class="button-group">
-                    <button class="btn" onclick="setChronic12(true)">Yes</button>
-                    <button class="btn" onclick="setChronic12(false)">No</button>
+                    <button class="btn" onclick="setEntryChronic12(true)">Yes</button>
+                    <button class="btn" onclick="setEntryChronic12(false)">No</button>
                 </div>
 
                 <div class="form-label" style="margin-top: 20px;">In past 3 years, literally homeless for 12+ months in 4+ separate occurrences?</div>
                 <div class="button-group">
-                    <button class="btn" onclick="setChronic3Year(true)">Yes</button>
-                    <button class="btn" onclick="setChronic3Year(false)">No</button>
+                    <button class="btn" onclick="setEntryChronic3Year(true)">Yes</button>
+                    <button class="btn" onclick="setEntryChronic3Year(false)">No</button>
                 </div>
 
                 <div class="form-label" style="margin-top: 20px;">Has a disability that prevents sustainable housing?</div>
                 <div class="form-label-secondary" style="margin-bottom: 12px;">Physical, intellectual, serious mental illness, or substance use disorder</div>
                 <div class="button-group">
-                    <button class="btn" onclick="setDisability(true)">Yes</button>
-                    <button class="btn" onclick="setDisability(false)">No</button>
+                    <button class="btn" onclick="setEntryDisability(true)">Yes</button>
+                    <button class="btn" onclick="setEntryDisability(false)">No</button>
                 </div>
 
                 <div class="info-box">
@@ -542,25 +792,330 @@
                 </div>
             </div>
 
-            <!-- RESULT -->
-            <div class="result-section" id="result">
-                <div class="result-title" id="resultTitle">Assessment Result</div>
-                <div class="result-subtitle" id="resultCategory">Category</div>
-                <div class="result-details" id="resultDetails">Assessment details will appear here</div>
+            <!-- ENTRY RESULT -->
+            <div class="result-section" id="entryResult">
+                <div class="result-title" id="entryResultTitle">Assessment Result</div>
+                <div class="result-subtitle" id="entryResultCategory">Category</div>
+                <div class="result-details" id="entryResultDetails">Assessment details will appear here</div>
+                <div class="housing-recommendation" id="entryHousingRec" style="display: none;">
+                    <h3>ClientTrack Prior Living Situation</h3>
+                    <ul id="entryHousingList"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXIT MODE (Current Living Situation) -->
+        <div class="main-card" id="exitMode">
+            <div class="qualification-header" style="display: none;">
+                <div class="qualification-title" id="exitQualTitle">EXIT ASSESSMENT</div>
+                <div class="qualification-subtitle" id="exitQualSubtitle">Determine exit housing outcome</div>
             </div>
 
-            <div class="bottom-buttons">
-                <button class="btn-primary" onclick="finalizeAssessment()">Complete Assessment</button>
-                <button class="btn-secondary" onclick="resetForm()">Clear Form</button>
+            <!-- EXIT STEP 1: Current Living Situation -->
+            <div class="form-section">
+                <div class="step-indicator">Step 1 of 1</div>
+                <div class="form-section-title">Current Living Situation at Exit</div>
+                
+                <div class="form-label">Which of these best describes where the client is staying now?</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="owned-rental" onchange="assessExitStatus()">
+                        <span>Owned or rental by client (habitation with a lease/mortgage, or other legal tenancy document)</span>
+                    </label>
+                    <div id="exitOwnedRentalDetails" style="display: none; background: #1a1f3a; padding: 16px; border-radius: 6px; margin: 12px 0 12px 30px; border-left: 3px solid #00d98e;">
+                        <div class="form-label" style="margin-bottom: 12px;">Select the ClientTrack current living situation:</div>
+                        <select id="exitOwnedRentalType" onchange="assessExitStatus()" style="width: 100%; padding: 10px 12px; background: #252d4a; border: 1px solid #2a3050; color: #e0e0e0; border-radius: 6px; font-size: 14px;">
+                            <option value="">Select owned/rental type...</option>
+                            <option value="Rental by client, no ongoing housing subsidy">Rental by client, no ongoing housing subsidy</option>
+                            <option value="Rental by client, with ongoing housing subsidy">Rental by client, with ongoing housing subsidy</option>
+                            <option value="Owned by client, with ongoing housing subsidy">Owned by client, with ongoing housing subsidy</option>
+                            <option value="Owned by client, no ongoing housing subsidy">Owned by client, no ongoing housing subsidy</option>
+                        </select>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="friends-family" onchange="assessExitStatus()">
+                        <span>Staying with friends or family</span>
+                    </label>
+                    <div id="exitFriendsFamilyDetails" style="display: none; background: #1a1f3a; padding: 16px; border-radius: 6px; margin: 12px 0 12px 30px; border-left: 3px solid #00d98e;">
+                        <div class="form-label" style="margin-bottom: 12px;">Which best describes the situation?</div>
+                        <div class="button-group">
+                            <button class="btn" onclick="setExitStayType('friends')">Staying with Friends</button>
+                            <button class="btn" onclick="setExitStayType('family')">Staying with Family</button>
+                        </div>
+
+                        <div class="form-label" style="margin-top: 20px; margin-bottom: 12px;">Regardless of the potential duration the client may stay at the residence, is there a date (or general date) by which the client needs to leave?</div>
+                        <div class="button-group">
+                            <button class="btn" onclick="setExitLeaveDateKnown(true)">Yes</button>
+                            <button class="btn" onclick="setExitLeaveDateKnown(false)">No</button>
+                        </div>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="hotel" onchange="assessExitStatus()">
+                        <span>Staying in hotel</span>
+                    </label>
+                    <div id="exitHotelDetails" style="display: none; background: #1a1f3a; padding: 16px; border-radius: 6px; margin: 12px 0 12px 30px; border-left: 3px solid #ffa500;">
+                        <div class="form-label" style="margin-bottom: 12px;">Paid for <strong>without</strong> emergency shelter voucher:</div>
+                        <div class="button-group">
+                            <button class="btn" onclick="setExitHotelPaidWithoutVoucher(true)">Yes</button>
+                            <button class="btn" onclick="setExitHotelPaidWithoutVoucher(false)">No</button>
+                        </div>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="emergency" onchange="assessExitStatus()">
+                        <span>Emergency shelter or transitional housing unit</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="outside" onchange="assessExitStatus()">
+                        <span>Outside (street, park, bench, etc.)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="structure" onchange="assessExitStatus()">
+                        <span>Structure not designated for habitation</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="vehicle" onchange="assessExitStatus()">
+                        <span>Vehicle/camper (lacks formal residency signified by lack of consistent and legal access to water, sewer, and electricity.)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="institution" onchange="assessExitStatus()">
+                        <span>Staying in an Institution (example, hospital, jail, etc.)</span>
+                    </label>
+                    <div id="exitInstitutionDetails" style="display: none; background: #1a1f3a; padding: 16px; border-radius: 6px; margin: 12px 0 12px 30px; border-left: 3px solid #0066cc;">
+                        <div class="form-label" style="margin-bottom: 12px;">Which type of institution?</div>
+                        <select id="exitInstitutionType" onchange="assessExitStatus()" style="width: 100%; padding: 10px 12px; background: #252d4a; border: 1px solid #2a3050; color: #e0e0e0; border-radius: 6px; font-size: 14px;">
+                            <option value="">Select institution type...</option>
+                            <option value="foster-care">Foster care home or foster care group home</option>
+                            <option value="hospital">Hospital or other residential non-psychiatric medical facility</option>
+                            <option value="jail">Jail, prison or juvenile detention facility</option>
+                            <option value="long-term-care">Long-term care facility or nursing home</option>
+                            <option value="psychiatric">Psychiatric hospital or other psychiatric facility</option>
+                            <option value="substance-abuse">Substance abuse treatment facility or detox center</option>
+                        </select>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="radio" name="exit-housing" value="other" onchange="assessExitStatus()">
+                        <span><strong>Other</strong></span>
+                    </label>
+                    <div id="exitOtherDetails" style="display: none; background: #1a1f3a; padding: 16px; border-radius: 6px; margin: 12px 0 12px 30px; border-left: 3px solid #8a8f9e;">
+                        <div class="form-label" style="margin-bottom: 12px;">Select the ClientTrack current living situation:</div>
+                        <select id="exitOtherType" onchange="assessExitStatus()" style="width: 100%; padding: 10px 12px; background: #252d4a; border: 1px solid #2a3050; color: #e0e0e0; border-radius: 6px; font-size: 14px;">
+                            <option value="">Select other type...</option>
+                            <option value="Moved from one HOPWA funded program to another">Moved from one HOPWA funded program to another</option>
+                            <option value="No exit interview completed">No exit interview completed</option>
+                            <option value="Deceased">Deceased</option>
+                            <option value="Client doesn't know">Client doesn't know</option>
+                            <option value="Client prefers not to answer">Client prefers not to answer</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    Select the single option that best matches the client's current living situation at exit.
+                </div>
+            </div>
+
+            <!-- EXIT STEP 1: Housing Destination Selection -->
+            <div class="form-section" style="display: none;">
+                <div class="step-indicator">Step 1 of 1</div>
+                <div class="form-section-title">Current Living Situation at Exit</div>
+                
+                <div class="form-label">Where is the client exiting to?</div>
+
+                <!-- Homeless Situation -->
+                <div style="margin-top: 20px; margin-bottom: 16px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #8a8f9e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3050;">Homeless Situation</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="place-not-meant" onchange="assessExitStatus()">
+                            <span>Place not meant for habitation (e.g., a vehicle, an abandoned building, bus/train/subway station/airport or anywhere outside)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="emergency-shelter" onchange="assessExitStatus()">
+                            <span>Emergency shelter, including hotel or motel paid for with emergency shelter voucher, Host Home shelter</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="safe-haven" onchange="assessExitStatus()">
+                            <span>Safe Haven</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Institutional Situation -->
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #8a8f9e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3050;">Institutional Situation</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="foster-care" onchange="assessExitStatus()">
+                            <span>Foster Care Home or Foster Care Group Home</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="hospital" onchange="assessExitStatus()">
+                            <span>Hospital or other residential non-psychiatric medical facility</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="jail" onchange="assessExitStatus()">
+                            <span>Jail, Prison, Juvenile Detention Facility</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="long-term-care" onchange="assessExitStatus()">
+                            <span>Long-term care facility or nursing home</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="psychiatric" onchange="assessExitStatus()">
+                            <span>Psychiatric Hospital or Other Psychiatric Facility</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="substance-abuse" onchange="assessExitStatus()">
+                            <span>Substance Abuse Treatment or Detox Center</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Temporary Housing Situations -->
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #8a8f9e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3050;">Temporary Housing Situations</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="transitional-housing" onchange="assessExitStatus()">
+                            <span>Transitional Housing for homeless persons (including homeless youth)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="residential-project" onchange="assessExitStatus()">
+                            <span>Residential project or halfway house with no homeless criteria</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="hotel-motel-not-paid" onchange="assessExitStatus()">
+                            <span>Hotel or Motel paid for without emergency shelter voucher</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="host-home-non-crisis" onchange="assessExitStatus()">
+                            <span>Host Home (non-crisis)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="family-temp" onchange="assessExitStatus()">
+                            <span>Staying or living with family, temporary tenure (e.g., room, apartment or house)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="friends-temp" onchange="assessExitStatus()">
+                            <span>Staying or living with friends, temporary tenure (e.g., room, apartment or house)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="hopwa-th" onchange="assessExitStatus()">
+                            <span>Moved from one HOPWA funded project to HOPWA TH</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Other -->
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #8a8f9e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3050;">Other</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="no-exit-interview" onchange="assessExitStatus()">
+                            <span>No exit interview completed</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="other" onchange="assessExitStatus()">
+                            <span>Other</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="deceased" onchange="assessExitStatus()">
+                            <span>Deceased</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="client-doesnt-know" onchange="assessExitStatus()">
+                            <span>Client doesn't know</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="prefers-not-answer" onchange="assessExitStatus()">
+                            <span>Client prefers not to answer</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Positive Exits (Permanent Housing) -->
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #00d98e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #00d98e;">Permanent Housing Situation</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="family-perm" onchange="assessExitStatus()">
+                            <span>Staying or living with family, permanent tenure</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="friends-perm" onchange="assessExitStatus()">
+                            <span>Staying or living with friends, permanent tenure</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="hopwa-ph" onchange="assessExitStatus()">
+                            <span>Moved from one HOPWA funded project to HOPWA PH</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="rental-no-subsidy" onchange="assessExitStatus()">
+                            <span>Rental by client, no ongoing housing subsidy</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="rental-with-subsidy" onchange="assessExitStatus()">
+                            <span>Rental by client, with ongoing housing subsidy</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="owned-with-subsidy" onchange="assessExitStatus()">
+                            <span>Owned by client, with ongoing housing subsidy</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="exit-housing" value="owned-no-subsidy" onchange="assessExitStatus()">
+                            <span>Owned by client, no ongoing housing subsidy</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    ✓ Selection will determine Stably Housed (Positive Exit) or Unstably Housed (Negative Exit)
+                </div>
+            </div>
+
+            <!-- EXIT RESULT -->
+            <div class="result-section" id="exitResult">
+                <div class="result-title" id="exitResultTitle">Exit Outcome</div>
+                <div class="result-subtitle" id="exitResultCategory">Category</div>
+                <div class="result-details" id="exitResultDetails">Assessment details will appear here</div>
+                <div class="housing-recommendation" id="exitHousingRec" style="display: none;">
+                    <h3>ClientTrack Current Living Situation Selection</h3>
+                    <ul id="exitHousingList"></ul>
+                </div>
+                <div id="exitWarning"></div>
+            </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="bottom-buttons" id="bottomButtons" style="display: none;">
+            <div class="bottom-actions">
+                <button class="btn-primary" onclick="completeAssessment()">Complete Assessment</button>
+                <button class="btn-tertiary" onclick="changeMode()">Start New Assessment</button>
+            </div>
+            <div class="usage-panel">
+                <div class="usage-summary">
+                    <div class="usage-metric">
+                        <span>Entry Uses</span>
+                        <strong id="entryExecutionCount">0</strong>
+                    </div>
+                    <div class="usage-metric">
+                        <span>Exit Uses</span>
+                        <strong id="exitExecutionCount">0</strong>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         // State management
-        const state = {
-            literally: new Set(),
-            imminent: new Set(),
+        const entryState = {
+            dvAtRisk: null,
+            literally: null,
+            institutionType: null,
+            institutionDays90plus: null,
+            imminent: null,
             loss14: null,
             residence: null,
             resources: null,
@@ -569,205 +1124,745 @@
             disability: null
         };
 
-        // Handle literally homeless checkboxes
-        document.querySelectorAll('input[name="literally"]').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    state.literally.add(this.value);
-                } else {
-                    state.literally.delete(this.value);
-                }
-                assessStatus();
+        const exitState = {
+            exitDestination: null,
+            stayType: null,
+            leaveDateKnown: null,
+            hotelPaidWithoutVoucher: null,
+            ownedRentalType: null,
+            institutionType: null,
+            otherExitType: null
+        };
+
+        let currentMode = null;
+
+        // Initialize execution counters
+        function initExecutionCounters() {
+            document.getElementById('entryExecutionCount').textContent = localStorage.getItem('hudEntryExecutionCount') || '0';
+            document.getElementById('exitExecutionCount').textContent = localStorage.getItem('hudExitExecutionCount') || '0';
+        }
+
+        function incrementExecutionCounter(type) {
+            const storageKey = type === 'entry' ? 'hudEntryExecutionCount' : 'hudExitExecutionCount';
+            const elementId = type === 'entry' ? 'entryExecutionCount' : 'exitExecutionCount';
+            let count = parseInt(localStorage.getItem(storageKey) || '0', 10) + 1;
+            localStorage.setItem(storageKey, count);
+            document.getElementById(elementId).textContent = count;
+        }
+
+        function setElementDisplay(id, displayValue) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.style.display = displayValue;
+            }
+        }
+
+        // Mode selection
+        function selectMode(mode) {
+            currentMode = mode;
+            setElementDisplay('modeSelector', 'none');
+            setElementDisplay('bottomButtons', 'grid');
+            document.getElementById('entryMode').classList.remove('active');
+            document.getElementById('exitMode').classList.remove('active');
+            
+            if (mode === 'entry') {
+                document.getElementById('entryMode').classList.add('active');
+                assessEntryStatus();
+            } else {
+                document.getElementById('exitMode').classList.add('active');
+                assessExitStatus();
+            }
+        }
+
+        function changeMode() {
+            clearForm();
+            setElementDisplay('modeSelector', 'block');
+            setElementDisplay('bottomButtons', 'none');
+            document.getElementById('entryMode').classList.remove('active');
+            document.getElementById('exitMode').classList.remove('active');
+            currentMode = null;
+        }
+
+        // ENTRY MODE HANDLERS
+        document.querySelectorAll('input[name="entry-literally"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                entryState.literally = this.value;
+                assessEntryStatus();
             });
         });
 
-        // Handle imminent checkboxes
-        document.querySelectorAll('input[name="imminent"]').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    state.imminent.add(this.value);
-                } else {
-                    state.imminent.delete(this.value);
-                }
-                assessStatus();
+        document.querySelectorAll('input[name="entry-imminent"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                entryState.imminent = this.value;
+                assessEntryStatus();
             });
         });
 
-        function setLoss14(value) {
-            state.loss14 = value;
-            const yesBtn = document.querySelector('button[onclick="setLoss14(true)"]');
-            const noBtn = document.querySelector('button[onclick="setLoss14(false)"]');
-            if (yesBtn) yesBtn.classList.toggle('active', value === true);
-            if (noBtn) noBtn.classList.toggle('active', value === false);
-            assessStatus();
+        const institutionTypeSelect = document.getElementById('institutionType');
+        if (institutionTypeSelect) {
+            institutionTypeSelect.addEventListener('change', function() {
+                entryState.institutionType = this.value;
+                assessEntryStatus();
+            });
         }
 
-        function setResidence(value) {
-            state.residence = value;
-            const yesBtn = document.querySelector('button[onclick="setResidence(true)"]');
-            const noBtn = document.querySelector('button[onclick="setResidence(false)"]');
-            if (yesBtn) yesBtn.classList.toggle('active', value === true);
-            if (noBtn) noBtn.classList.toggle('active', value === false);
-            assessStatus();
+
+        const exitOwnedRentalTypeSelect = document.getElementById('exitOwnedRentalType');
+        if (exitOwnedRentalTypeSelect) {
+            exitOwnedRentalTypeSelect.addEventListener('change', function() {
+                exitState.ownedRentalType = this.value || null;
+                assessExitStatus();
+            });
         }
 
-        function setResources(value) {
-            state.resources = value;
-            const yesBtn = document.querySelector('button[onclick="setResources(true)"]');
-            const noBtn = document.querySelector('button[onclick="setResources(false)"]');
-            if (yesBtn) yesBtn.classList.toggle('active', value === true);
-            if (noBtn) noBtn.classList.toggle('active', value === false);
-            assessStatus();
+        const exitInstitutionTypeSelect = document.getElementById('exitInstitutionType');
+        if (exitInstitutionTypeSelect) {
+            exitInstitutionTypeSelect.addEventListener('change', function() {
+                exitState.institutionType = this.value || null;
+                assessExitStatus();
+            });
         }
 
-        function setChronic12(value) {
-            state.chronic12 = value;
-            const yesBtn = document.querySelector('button[onclick="setChronic12(true)"]');
-            const noBtn = document.querySelector('button[onclick="setChronic12(false)"]');
-            if (yesBtn) yesBtn.classList.toggle('active', value === true);
-            if (noBtn) noBtn.classList.toggle('active', value === false);
-            assessStatus();
+        const exitOtherTypeSelect = document.getElementById('exitOtherType');
+        if (exitOtherTypeSelect) {
+            exitOtherTypeSelect.addEventListener('change', function() {
+                exitState.otherExitType = this.value || null;
+                assessExitStatus();
+            });
         }
 
-        function setChronic3Year(value) {
-            state.chronic3Year = value;
-            const yesBtn = document.querySelector('button[onclick="setChronic3Year(true)"]');
-            const noBtn = document.querySelector('button[onclick="setChronic3Year(false)"]');
+        function setEntryInstitutionDays(value) {
+            entryState.institutionDays90plus = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryInstitutionDays(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryInstitutionDays(false)"]');
             if (yesBtn) yesBtn.classList.toggle('active', value === true);
             if (noBtn) noBtn.classList.toggle('active', value === false);
-            assessStatus();
+            assessEntryStatus();
         }
 
-        function setDisability(value) {
-            state.disability = value;
-            const yesBtn = document.querySelector('button[onclick="setDisability(true)"]');
-            const noBtn = document.querySelector('button[onclick="setDisability(false)"]');
+        function setEntryLoss14(value) {
+            entryState.loss14 = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryLoss14(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryLoss14(false)"]');
             if (yesBtn) yesBtn.classList.toggle('active', value === true);
             if (noBtn) noBtn.classList.toggle('active', value === false);
-            assessStatus();
+            assessEntryStatus();
         }
 
-        function assessStatus() {
-            // Get all literally homeless criteria except "none of the above"
-            const literallyHomelessCriteria = Array.from(state.literally).filter(v => v !== 'none-above');
-            const noneOfAboveSelected = state.literally.has('none-above');
-            const isLiterallyHomeless = literallyHomelessCriteria.length > 0;
+        function setEntryResidence(value) {
+            entryState.residence = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryResidence(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryResidence(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessEntryStatus();
+        }
+
+        function setEntryResources(value) {
+            entryState.resources = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryResources(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryResources(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessEntryStatus();
+        }
+
+        function setEntryDvAtRisk(value) {
+            entryState.dvAtRisk = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryDvAtRisk(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryDvAtRisk(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessEntryStatus();
+        }
+
+        function setEntryChronic12(value) {
+            entryState.chronic12 = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryChronic12(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryChronic12(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessEntryStatus();
+        }
+
+        function setEntryChronic3Year(value) {
+            entryState.chronic3Year = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryChronic3Year(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryChronic3Year(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessEntryStatus();
+        }
+
+        function setEntryDisability(value) {
+            entryState.disability = value;
+            const yesBtn = document.querySelector('button[onclick="setEntryDisability(true)"]');
+            const noBtn = document.querySelector('button[onclick="setEntryDisability(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessEntryStatus();
+        }
+
+        function assessEntryStatus() {
+            const isLiterallyHomeless = entryState.literally && entryState.literally !== 'none-above';
+            const noneOfAboveSelected = entryState.literally === 'none-above';
+            const hasImminentSelection = entryState.imminent && entryState.imminent !== 'none-above';
+            const hasClientTrackSelection = isLiterallyHomeless || (noneOfAboveSelected && hasImminentSelection);
+            const isDvQualified = entryState.dvAtRisk === true && hasClientTrackSelection;
+
+            if (entryState.literally === 'institution') {
+                setElementDisplay('institutionDetails', 'block');
+            } else {
+                setElementDisplay('institutionDetails', 'none');
+            }
+
+            setElementDisplay('entryDvStatusHelp', entryState.dvAtRisk === true ? 'block' : 'none');
+            setElementDisplay('entryDvFollowup', entryState.dvAtRisk !== null ? 'block' : 'none');
 
             if (isLiterallyHomeless) {
-                // Literally homeless - hide step 2, show step 3 for chronic screening
-                document.getElementById('step2').style.display = 'none';
-                document.getElementById('step3').style.display = 'block';
+                setElementDisplay('entryStep2', 'none');
+                setElementDisplay('entryStep3', 'block');
                 return;
             }
 
             if (noneOfAboveSelected) {
-                // None of the above - show step 2 (imminent risk)
-                document.getElementById('step2').style.display = 'block';
-                document.getElementById('step3').style.display = 'none';
+                setElementDisplay('entryStep2', 'block');
+                setElementDisplay('entryStep3', 'none');
                 return;
             }
 
-            // Nothing selected yet
-            document.getElementById('step2').style.display = 'none';
-            document.getElementById('step3').style.display = 'none';
+            setElementDisplay('entryStep2', 'none');
+            setElementDisplay('entryStep3', 'none');
         }
 
-        function finalizeAssessment() {
-            // Get all literally homeless criteria except "none of the above"
-            const literallyHomelessCriteria = Array.from(state.literally).filter(v => v !== 'none-above');
-            const noneOfAboveSelected = state.literally.has('none-above');
-            const isLiterallyHomeless = literallyHomelessCriteria.length > 0;
+        document.querySelectorAll('input[name="exit-housing"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                exitState.exitDestination = this.value;
+                if (this.value !== 'owned-rental') {
+                    exitState.ownedRentalType = null;
+                }
+                if (this.value !== 'institution') {
+                    exitState.institutionType = null;
+                }
+                if (this.value !== 'other') {
+                    exitState.otherExitType = null;
+                }
+                if (this.value !== 'friends-family') {
+                    exitState.stayType = null;
+                    exitState.leaveDateKnown = null;
+                }
+                if (this.value !== 'hotel') {
+                    exitState.hotelPaidWithoutVoucher = null;
+                }
+                assessExitStatus();
+            });
+        });
+
+        function setExitStayType(value) {
+            exitState.stayType = value;
+            const friendsBtn = document.querySelector('button[onclick="setExitStayType(\'friends\')"]');
+            const familyBtn = document.querySelector('button[onclick="setExitStayType(\'family\')"]');
+            if (friendsBtn) friendsBtn.classList.toggle('active', value === 'friends');
+            if (familyBtn) familyBtn.classList.toggle('active', value === 'family');
+            assessExitStatus();
+        }
+
+        function setExitLeaveDateKnown(value) {
+            exitState.leaveDateKnown = value;
+            const yesBtn = document.querySelector('button[onclick="setExitLeaveDateKnown(true)"]');
+            const noBtn = document.querySelector('button[onclick="setExitLeaveDateKnown(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessExitStatus();
+        }
+
+        function setExitHotelPaidWithoutVoucher(value) {
+            exitState.hotelPaidWithoutVoucher = value;
+            const yesBtn = document.querySelector('button[onclick="setExitHotelPaidWithoutVoucher(true)"]');
+            const noBtn = document.querySelector('button[onclick="setExitHotelPaidWithoutVoucher(false)"]');
+            if (yesBtn) yesBtn.classList.toggle('active', value === true);
+            if (noBtn) noBtn.classList.toggle('active', value === false);
+            assessExitStatus();
+        }
+
+        function assessExitStatus() {
+            const permanentDestinations = new Set([
+                'owned-rental'
+            ]);
+
+            if (exitState.exitDestination === 'owned-rental') {
+                setElementDisplay('exitOwnedRentalDetails', 'block');
+            } else {
+                setElementDisplay('exitOwnedRentalDetails', 'none');
+            }
+
+            if (exitState.exitDestination === 'institution') {
+                setElementDisplay('exitInstitutionDetails', 'block');
+            } else {
+                setElementDisplay('exitInstitutionDetails', 'none');
+            }
+
+            if (exitState.exitDestination === 'other') {
+                setElementDisplay('exitOtherDetails', 'block');
+            } else {
+                setElementDisplay('exitOtherDetails', 'none');
+            }
+
+            if (exitState.exitDestination === 'friends-family') {
+                setElementDisplay('exitFriendsFamilyDetails', 'block');
+            } else {
+                setElementDisplay('exitFriendsFamilyDetails', 'none');
+            }
+
+            if (exitState.exitDestination === 'hotel') {
+                setElementDisplay('exitHotelDetails', 'block');
+            } else {
+                setElementDisplay('exitHotelDetails', 'none');
+            }
+
+            if (!exitState.exitDestination) {
+                document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+                return;
+            }
+
+            let isStablyHoused = permanentDestinations.has(exitState.exitDestination);
+            if (exitState.exitDestination === 'owned-rental' && !exitState.ownedRentalType) {
+                document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+                return;
+            }
+            if (exitState.exitDestination === 'institution' && !exitState.institutionType) {
+                document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+                return;
+            }
+            if (exitState.exitDestination === 'other' && !exitState.otherExitType) {
+                document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+                return;
+            }
+            if (exitState.exitDestination === 'friends-family') {
+                if (!exitState.stayType || exitState.leaveDateKnown === null) {
+                    document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                    document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+                    return;
+                }
+                isStablyHoused = exitState.leaveDateKnown === false;
+            }
+
+            if (exitState.exitDestination === 'hotel' && exitState.hotelPaidWithoutVoucher === null) {
+                document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+                return;
+            }
+
+            if (exitState.exitDestination === 'other' && exitState.otherExitType === 'Deceased') {
+                document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+                document.getElementById('exitQualTitle').textContent = 'LIKELY NEUTRAL EXIT';
+                return;
+            }
+
+            document.getElementById('exitQualTitle').className = `qualification-title ${isStablyHoused ? 'stably-housed' : 'unstably-housed'}`;
+            document.getElementById('exitQualTitle').textContent = isStablyHoused ? 'LIKELY POSITIVE EXIT' : 'LIKELY NEGATIVE EXIT';
+        }
+
+        // HELPER FUNCTION
+        function getInstitutionTypeLabel(institutionType) {
+            const typeMap = {
+                'foster-care': 'Foster care home or foster care group home',
+                'hospital': 'Hospital or other residential non-psychiatric medical facility',
+                'jail': 'Jail, prison or juvenile detention facility',
+                'long-term-care': 'Long-term care facility or nursing home',
+                'psychiatric': 'Psychiatric hospital or other psychiatric facility',
+                'substance-abuse': 'Substance abuse treatment facility or detox center'
+            };
+            return typeMap[institutionType] || '';
+        }
+
+        function getPriorLivingSituationLabel(value) {
+            const typeMap = {
+                'place-not-meant': 'Place not meant for habitation (e.g., a vehicle, an abandoned building, bus/train/subway station/airport or anywhere outside)',
+                'emergency-shelter': 'Emergency shelter, including hotel or motel paid for with emergency shelter voucher, Host Home shelter',
+                'foster-care': 'Foster care home or foster care group home',
+                'hospital': 'Hospital or other residential non-psychiatric medical facility',
+                'jail': 'Jail, prison or juvenile detention facility',
+                'long-term-care': 'Long-term care facility or nursing home',
+                'psychiatric': 'Psychiatric hospital or other psychiatric facility',
+                'substance-abuse': 'Substance abuse treatment facility or detox center',
+                'hotel-not-paid': 'Hotel or Motel paid for without emergency shelter voucher',
+                'friend': 'Staying or living in a friend\'s room, apartment or house',
+                'family': 'Staying or living in a family member\'s room, apartment or house',
+                'place-rent': 'Place you rent/own'
+            };
+            return typeMap[value] || '';
+        }
+
+        // COMPLETE ASSESSMENT
+        function completeAssessment() {
+            if (currentMode === 'entry') {
+                completeEntryAssessment();
+            } else if (currentMode === 'exit') {
+                completeExitAssessment();
+            }
+        }
+
+        function completeEntryAssessment() {
+            const isLiterallyHomeless = entryState.literally && entryState.literally !== 'none-above';
+            const noneOfAboveSelected = entryState.literally === 'none-above';
+            const hasImminentSelection = entryState.imminent && entryState.imminent !== 'none-above';
+            const hasClientTrackSelection = isLiterallyHomeless || (noneOfAboveSelected && hasImminentSelection);
+            const isDvQualified = entryState.dvAtRisk === true && hasClientTrackSelection;
+            const isDvImminentOverride = isDvQualified && !isLiterallyHomeless;
+            const dvDefinition = 'The client is considered literally homeless under HUD because they are fleeing or attempting to flee domestic violence and their current housing is unsafe.';
             
-            let category, title, subtitle, details, categoryName;
+            let category, title, subtitle, details, categoryName, clientTrackHousing;
 
-            if (isLiterallyHomeless) {
-                // Check if also chronically homeless
-                const chronic12 = state.chronic12 === true;
-                const chronic3Year = state.chronic3Year === true;
-                const hasDisability = state.disability === true;
-                const isChronicallyHomeless = (chronic12 || chronic3Year) && hasDisability;
+            if (entryState.dvAtRisk === null) {
+                alert('Please answer the domestic violence question.');
+                return;
+            }
 
-                if (isChronicallyHomeless) {
-                    category = 'chronically-homeless';
-                    categoryName = 'CATEGORY 4: CHRONICALLY HOMELESS';
-                    title = 'CHRONICALLY HOMELESS';
-                    subtitle = 'HUD Definition Category 4';
-                    details = 'The client is literally homeless AND has an extensive homelessness history combined with a disability that impedes sustainable housing. They meet the criteria for Chronically Homeless.';
-                } else {
+            if (entryState.dvAtRisk === true && !hasClientTrackSelection) {
+                alert('Please select the client\'s prior living situation so the ClientTrack value can be populated.');
+                return;
+            }
+
+            if (isLiterallyHomeless || isDvQualified) {
+                if (isLiterallyHomeless) {
+                    if (entryState.literally === 'institution') {
+                        if (!entryState.institutionType || entryState.institutionDays90plus === null) {
+                            alert('Please select an institution type and answer the 90 days question.');
+                            return;
+                        }
+                        clientTrackHousing = getInstitutionTypeLabel(entryState.institutionType);
+                    } else if (entryState.literally === 'outside' || entryState.literally === 'structure' || entryState.literally === 'vehicle') {
+                        clientTrackHousing = 'Place not meant for habitation (e.g., a vehicle, an abandoned building, bus/train/subway station/airport or anywhere outside)';
+                    } else if (entryState.literally === 'emergency' || entryState.literally === 'hotel') {
+                        clientTrackHousing = 'Emergency shelter, including hotel or motel paid for with emergency shelter voucher, Host Home shelter';
+                    }
+                } else if (noneOfAboveSelected && hasImminentSelection) {
+                    clientTrackHousing = getPriorLivingSituationLabel(entryState.imminent);
+                }
+
+                if (!clientTrackHousing) {
+                    alert('Please select the client\'s prior living situation so the ClientTrack value can be populated.');
+                    return;
+                }
+
+                if (isDvImminentOverride) {
                     category = 'literally-homeless';
                     categoryName = 'CATEGORY 1: LITERALLY HOMELESS';
                     title = 'LITERALLY HOMELESS';
                     subtitle = 'HUD Definition Category 1';
-                    details = 'The client meets HUD\'s definition of literally homeless based on their current living situation or recent exit from an institution.';
+                    details = 'The client meets HUD\'s definition of literally homeless based on their current living situation. ' + dvDefinition;
+                } else {
+                    if (entryState.chronic12 === null || entryState.chronic3Year === null || entryState.disability === null) {
+                        document.querySelectorAll('#entryStep3 .form-label').forEach(label => {
+                            if (!label.classList.contains('form-label-secondary')) {
+                                label.classList.add('error');
+                            }
+                        });
+                        alert('Please answer all questions in the Chronic Homelessness Screening section.');
+                        return;
+                    }
+                    
+                    document.querySelectorAll('#entryStep3 .form-label').forEach(label => {
+                        label.classList.remove('error');
+                    });
+
+                    const chronic12 = entryState.chronic12 === true;
+                    const chronic3Year = entryState.chronic3Year === true;
+                    const hasDisability = entryState.disability === true;
+                    const isChronicallyHomeless = (chronic12 || chronic3Year) && hasDisability;
+
+                    if (isChronicallyHomeless) {
+                        category = 'chronically-homeless';
+                        categoryName = 'CATEGORY 4: CHRONICALLY HOMELESS';
+                        title = 'CHRONICALLY HOMELESS';
+                        subtitle = 'HUD Definition Category 4';
+                        details = 'The client is literally homeless AND has extensive homelessness history combined with a disability that impedes sustainable housing.';
+                    } else {
+                        category = 'literally-homeless';
+                        categoryName = 'CATEGORY 1: LITERALLY HOMELESS';
+                        title = 'LITERALLY HOMELESS';
+                        subtitle = 'HUD Definition Category 1';
+                        details = 'The client meets HUD\'s definition of literally homeless based on their current living situation.';
+                    }
+
+                    if (entryState.dvAtRisk === true) {
+                        details += ' ' + dvDefinition;
+                    }
                 }
             } else if (noneOfAboveSelected) {
-                // Not literally homeless - check imminent risk
-                const hasImminentCriteria = state.imminent.size > 0;
-                const meetsImminentRisk = hasImminentCriteria && state.loss14 === true && state.residence === false && state.resources === true;
+                if (entryState.imminent === null) {
+                    alert('Please answer where the client is currently staying.');
+                    return;
+                }
+
+                if (entryState.loss14 === null || entryState.residence === null || entryState.resources === null) {
+                    document.querySelectorAll('#entryStep2 .form-label').forEach(label => {
+                        if (!label.classList.contains('form-label-secondary')) {
+                            label.classList.add('error');
+                        }
+                    });
+                    alert('Please answer all questions in the Imminent Risk section.');
+                    return;
+                }
+                
+                document.querySelectorAll('#entryStep2 .form-label').forEach(label => {
+                    label.classList.remove('error');
+                });
+
+                if (entryState.imminent === 'hotel-not-paid') {
+                    clientTrackHousing = 'Hotel or Motel paid for without emergency shelter voucher';
+                } else if (entryState.imminent === 'friend') {
+                    clientTrackHousing = 'Staying or living in a friend\'s room, apartment or house';
+                } else if (entryState.imminent === 'family') {
+                    clientTrackHousing = 'Staying or living in a family member\'s room, apartment or house';
+                } else if (entryState.imminent === 'place-rent') {
+                    clientTrackHousing = 'Place you rent/own';
+                }
+
+                const meetsImminentRisk = entryState.imminent !== null && entryState.loss14 === true && entryState.residence === true && entryState.resources === true;
 
                 if (meetsImminentRisk) {
                     category = 'imminent-risk';
                     categoryName = 'CATEGORY 2: IMMINENT RISK OF HOMELESSNESS';
                     title = 'IMMINENT RISK OF HOMELESSNESS';
                     subtitle = 'HUD Definition Category 2';
-                    details = 'The client will likely become homeless within 14 days and lacks resources and support networks to prevent it.';
+                    details = 'The client meets HUD\'s imminent-risk definition because housing loss is expected within 14 days, there is no subsequent residence identified, and the client lacks resources or support networks for other permanent housing.';
                 } else {
                     category = 'not-homeless';
                     categoryName = 'NOT HOMELESS (per HUD definition)';
                     title = 'NOT HOMELESS';
                     subtitle = 'Does not meet HUD homelessness criteria';
-                    details = 'The client does not meet HUD\'s definition of homelessness based on the provided criteria. However, they may still benefit from housing support services.';
+                    details = 'To qualify as at imminent risk of homelessness, the client must have all three: housing loss expected within 14 days, no subsequent residence identified, and a lack of resources or support networks for other permanent housing. One or more of those conditions was not met here.';
                 }
             } else {
-                category = 'not-homeless';
-                categoryName = 'NOT HOMELESS (per HUD definition)';
-                title = 'NOT HOMELESS';
-                subtitle = 'Does not meet HUD homelessness criteria';
-                details = 'Please complete all steps before finalizing the assessment.';
+                alert('Please select an option in the Prior Living Situation section.');
+                return;
             }
 
-            document.getElementById('result').className = `result-section show ${category}`;
-            document.getElementById('resultTitle').className = `result-title ${category}`;
-            document.getElementById('resultTitle').textContent = title;
-            document.getElementById('resultCategory').textContent = categoryName;
-            document.getElementById('resultDetails').className = `result-details ${category}`;
-            document.getElementById('resultDetails').textContent = details;
+            document.getElementById('entryResult').className = `result-section show ${category}`;
+            document.getElementById('entryResultTitle').className = `result-title ${category}`;
+            document.getElementById('entryResultTitle').textContent = title;
+            document.getElementById('entryResultCategory').textContent = categoryName;
+            document.getElementById('entryResultDetails').className = `result-details ${category}`;
+            document.getElementById('entryResultDetails').textContent = details;
 
-            document.getElementById('qualTitle').className = `qualification-title ${category}`;
-            document.getElementById('qualTitle').textContent = title;
-            document.getElementById('qualSubtitle').textContent = categoryName;
+            document.getElementById('entryHousingList').innerHTML = '<li>' + clientTrackHousing + '</li>';
+            document.getElementById('entryHousingRec').style.display = 'block';
+
+            document.getElementById('entryQualTitle').className = `qualification-title ${category}`;
+            document.getElementById('entryQualTitle').textContent = title;
 
             document.getElementById('assessmentStatus').textContent = 'COMPLETE';
-            document.getElementById('categoryStatus').textContent = categoryName.split(':')[0].trim();
 
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            incrementExecutionCounter('entry');
+            document.getElementById('entryResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        function completeExitAssessment() {
+            if (!exitState.exitDestination) {
+                alert('Please select the client\'s current living situation at exit.');
+                return;
+            }
+
+            if (exitState.exitDestination === 'owned-rental' && !exitState.ownedRentalType) {
+                alert('Please select the owned or rental ClientTrack option.');
+                return;
+            }
+
+            if (exitState.exitDestination === 'institution' && !exitState.institutionType) {
+                alert('Please select the institution type.');
+                return;
+            }
+
+            if (exitState.exitDestination === 'other' && !exitState.otherExitType) {
+                alert('Please select the Other current living situation.');
+                return;
+            }
+
+            if (exitState.exitDestination === 'friends-family' && (!exitState.stayType || exitState.leaveDateKnown === null)) {
+                alert('Please choose whether the client is staying with friends or family and answer whether there is a date by which they need to leave.');
+                return;
+            }
+
+            if (exitState.exitDestination === 'hotel' && exitState.hotelPaidWithoutVoucher === null) {
+                alert('Please answer whether the hotel is paid for without an emergency shelter voucher.');
+                return;
+            }
+
+            let category, title, subtitle, details, categoryName;
+            const stableDestinations = new Set([
+                'owned-rental'
+            ]);
+            let isStablyHoused = stableDestinations.has(exitState.exitDestination);
+            const exitLabelMap = {
+                'owned-rental': 'Owned or rental by client (habitation with a lease/mortgage, or other legal tenancy document)',
+                'friends-family': 'Staying with friends or family',
+                'hotel': 'Staying in hotel',
+                'hotel-emergency': 'Emergency shelter, including hotel or motel paid for with emergency shelter voucher, Host Home shelter',
+                'hotel-no-voucher': 'Hotel or Motel paid for without emergency shelter voucher',
+                'outside': 'Place not meant for habitation (e.g., a vehicle, an abandoned building, bus/train/subway station/airport or anywhere outside)',
+                'structure': 'Place not meant for habitation (e.g., a vehicle, an abandoned building, bus/train/subway station/airport or anywhere outside)',
+                'vehicle': 'Place not meant for habitation (e.g., a vehicle, an abandoned building, bus/train/subway station/airport or anywhere outside)',
+                'emergency': 'Emergency shelter, including hotel or motel paid for with emergency shelter voucher, Host Home shelter',
+                'institution': 'Staying in an institution',
+                'other': 'Other'
+            };
+
+            let selectedExitLabel = exitLabelMap[exitState.exitDestination];
+            if (exitState.exitDestination === 'hotel' && exitState.hotelPaidWithoutVoucher === true) {
+                selectedExitLabel = exitLabelMap['hotel-no-voucher'];
+            } else if (exitState.exitDestination === 'hotel' && exitState.hotelPaidWithoutVoucher === false) {
+                selectedExitLabel = exitLabelMap['hotel-emergency'];
+            }
+
+            if (exitState.exitDestination === 'friends-family') {
+                isStablyHoused = exitState.leaveDateKnown === false;
+            }
+
+            if (exitState.exitDestination === 'owned-rental') {
+                selectedExitLabel = exitState.ownedRentalType;
+            }
+
+            if (exitState.exitDestination === 'institution') {
+                selectedExitLabel = getInstitutionTypeLabel(exitState.institutionType);
+            }
+
+            if (exitState.exitDestination === 'other') {
+                selectedExitLabel = exitState.otherExitType;
+            }
+
+            if (exitState.exitDestination === 'other' && exitState.otherExitType === 'Deceased') {
+                category = 'neutral-exit';
+                categoryName = 'LIKELY NEUTRAL EXIT';
+                title = 'LIKELY NEUTRAL EXIT';
+                subtitle = 'No housing outcome to record';
+                details = 'The client is deceased. This is typically treated as a neutral exit rather than a positive or negative housing outcome.';
+            } else if (isStablyHoused) {
+                category = 'stably-housed';
+                categoryName = 'LIKELY POSITIVE EXIT';
+                title = 'LIKELY POSITIVE EXIT';
+                subtitle = 'Client appears to be stably housed';
+                details = 'The client appears to be exiting to a stable housing destination.';
+            } else {
+                category = 'unstably-housed';
+                categoryName = 'LIKELY NEGATIVE EXIT';
+                title = 'LIKELY NEGATIVE EXIT';
+                subtitle = 'Client appears to be unstably housed';
+                details = 'The client appears to be exiting to an unstable housing destination or one that suggests a continued risk of homelessness.';
+            }
+
+            document.getElementById('exitResult').className = `result-section show ${category}`;
+            document.getElementById('exitResultTitle').className = `result-title ${category}`;
+            document.getElementById('exitResultTitle').textContent = title;
+            document.getElementById('exitResultCategory').textContent = categoryName;
+            document.getElementById('exitResultDetails').className = `result-details ${category}`;
+            document.getElementById('exitResultDetails').textContent = details;
+
+            let housingOptions = [];
+
+            if (exitState.exitDestination === 'friends-family') {
+                housingOptions = [
+                    exitState.stayType === 'friends' ? 'Staying with Friends' : 'Staying with Family'
+                ];
+                document.getElementById('exitWarning').innerHTML = exitState.leaveDateKnown
+                    ? '<div class="warning-box"><strong>Warning:</strong> Client must leave current residence. This should be treated as an unstable housing situation.</div>'
+                    : '';
+            } else {
+                housingOptions = [
+                    selectedExitLabel
+                ];
+                document.getElementById('exitWarning').innerHTML = '';
+            }
+
+            document.getElementById('exitWarning').innerHTML = '';
+            document.getElementById('exitHousingList').innerHTML = '';
+            housingOptions.forEach(option => {
+                const li = document.createElement('li');
+                li.textContent = option;
+                document.getElementById('exitHousingList').appendChild(li);
+            });
+            document.getElementById('exitHousingRec').style.display = 'block';
+
+            document.getElementById('exitQualTitle').className = `qualification-title ${category}`;
+            document.getElementById('exitQualTitle').textContent = title;
+
+            document.getElementById('assessmentStatus').textContent = 'COMPLETE';
+
+            incrementExecutionCounter('exit');
+            document.getElementById('exitResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        function resetForm() {
-            state.literally.clear();
-            state.imminent.clear();
-            state.loss14 = null;
-            state.residence = null;
-            state.resources = null;
-            state.chronic12 = null;
-            state.chronic3Year = null;
-            state.disability = null;
+        function clearForm() {
+            // Clear entry state
+            entryState.dvAtRisk = null;
+            entryState.literally = null;
+            entryState.institutionType = null;
+            entryState.institutionDays90plus = null;
+            entryState.imminent = null;
+            entryState.loss14 = null;
+            entryState.residence = null;
+            entryState.resources = null;
+            entryState.chronic12 = null;
+            entryState.chronic3Year = null;
+            entryState.disability = null;
 
-            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            // Clear exit state
+            exitState.exitDestination = null;
+            exitState.stayType = null;
+            exitState.leaveDateKnown = null;
+            exitState.hotelPaidWithoutVoucher = null;
+            exitState.ownedRentalType = null;
+            exitState.institutionType = null;
+            exitState.otherExitType = null;
+
+            // Clear UI
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            if (institutionTypeSelect) {
+                institutionTypeSelect.value = '';
+            }
+            if (exitOwnedRentalTypeSelect) {
+                exitOwnedRentalTypeSelect.value = '';
+            }
+            if (exitInstitutionTypeSelect) {
+                exitInstitutionTypeSelect.value = '';
+            }
+            if (exitOtherTypeSelect) {
+                exitOtherTypeSelect.value = '';
+            }
             document.querySelectorAll('button.btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('result').classList.remove('show');
-            document.getElementById('step2').style.display = 'none';
-            document.getElementById('step3').style.display = 'none';
+            document.querySelectorAll('.form-label').forEach(label => label.classList.remove('error'));
+            document.getElementById('entryResult').classList.remove('show');
+            document.getElementById('exitResult').classList.remove('show');
+            document.getElementById('entryResult').className = 'result-section';
+            document.getElementById('exitResult').className = 'result-section';
+            setElementDisplay('institutionDetails', 'none');
+            setElementDisplay('entryDvStatusHelp', 'none');
+            setElementDisplay('entryDvFollowup', 'none');
+            setElementDisplay('entryStep2', 'none');
+            setElementDisplay('entryStep3', 'none');
+            setElementDisplay('exitOwnedRentalDetails', 'none');
+            setElementDisplay('exitInstitutionDetails', 'none');
+            setElementDisplay('exitOtherDetails', 'none');
+            setElementDisplay('exitFriendsFamilyDetails', 'none');
+            setElementDisplay('exitHotelDetails', 'none');
+            setElementDisplay('entryHousingRec', 'none');
+            setElementDisplay('exitHousingRec', 'none');
+            document.getElementById('exitWarning').innerHTML = '';
+            document.getElementById('entryQualTitle').className = 'qualification-title';
+            document.getElementById('entryQualTitle').textContent = 'HUD ASSESSMENT';
+            document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
+            document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
 
-            document.getElementById('qualTitle').className = 'qualification-title';
-            document.getElementById('qualTitle').textContent = 'HUD HOMELESSNESS ASSESSMENT';
-            document.getElementById('qualSubtitle').textContent = 'Determine client homelessness category';
             document.getElementById('assessmentStatus').textContent = 'PENDING';
-            document.getElementById('categoryStatus').textContent = 'UNKNOWN';
         }
 
         // Initialize
-        assessStatus();
+        initExecutionCounters();
     </script>
 </body>
 </html>
+
