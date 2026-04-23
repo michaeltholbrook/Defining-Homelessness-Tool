@@ -445,19 +445,20 @@
 
         .housing-recommendation {
             background: #1a1f3a;
-            border: 1px solid #2a3050;
+            border: 2px solid #00d98e;
             border-radius: 8px;
-            padding: 16px;
-            margin-top: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 12px rgba(0, 217, 142, 0.2);
         }
 
         .housing-recommendation h3 {
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 600;
             color: #00d98e;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            text-transform: none;
+            letter-spacing: normal;
         }
 
         .housing-recommendation ul {
@@ -467,11 +468,12 @@
         }
 
         .housing-recommendation li {
-            font-size: 13px;
-            color: #b0b5c0;
-            padding: 8px 0;
-            padding-left: 20px;
+            font-size: 16px;
+            color: #e0e0e0;
+            padding: 12px 0;
+            padding-left: 25px;
             position: relative;
+            font-weight: 500;
         }
 
         .housing-recommendation li:before {
@@ -480,6 +482,7 @@
             left: 0;
             color: #00d98e;
             font-weight: 600;
+            font-size: 18px;
         }
 
         .warning-box {
@@ -567,6 +570,269 @@
             margin-top: 12px;
         }
 
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid #2a3050;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #b0b5c0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Light theme colors */
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #333;
+        }
+
+        body.light-theme .header {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .header-title {
+            color: #000;
+        }
+
+        body.light-theme .mode-selector {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .mode-selector h2 {
+            color: #000;
+        }
+
+        body.light-theme .mode-btn {
+            border: 2px solid #e0e0e0;
+            color: #666;
+        }
+
+        body.light-theme .mode-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        body.light-theme .main-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .form-section {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .form-section-title {
+            color: #000;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .form-label {
+            color: #000;
+        }
+
+        body.light-theme .checkbox-label {
+            border-radius: 6px;
+        }
+
+        body.light-theme .checkbox-label:hover {
+            background: #f0f0f0;
+        }
+
+        body.light-theme .checkbox-label span {
+            color: #333;
+        }
+
+        body.light-theme .btn {
+            border: 2px solid #ddd;
+            color: #666;
+        }
+
+        body.light-theme .btn:hover {
+            border-color: #999;
+            background: #f0f0f0;
+            color: #000;
+        }
+
+        body.light-theme .btn.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: #fff;
+        }
+
+        body.light-theme .result-section {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+        }
+
+        body.light-theme .result-details {
+            background: #fff;
+            color: #333;
+            border-left-color: #2563eb;
+        }
+
+        body.light-theme .info-box {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            color: #666;
+        }
+
+        body.light-theme .warning-box {
+            background: rgba(255, 165, 0, 0.1);
+            border: 1px solid #ffa500;
+            color: #cc6600;
+        }
+
+        body.light-theme .status-label {
+            color: #999;
+        }
+
+        body.light-theme .theme-toggle {
+            border: 1px solid #ddd;
+            color: #666;
+        }
+
+        body.light-theme .theme-toggle:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        body.light-theme .usage-panel {
+            border: 1px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        body.light-theme .housing-recommendation {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .housing-recommendation h3 {
+            color: #2563eb;
+        }
+
+        body.light-theme .housing-recommendation li {
+            color: #666;
+        }
+
+        body.light-theme .housing-recommendation li:before {
+            color: #2563eb;
+        }
+
+        body.light-theme .btn-primary {
+            background: #0066cc;
+        }
+
+        body.light-theme .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        body.light-theme .btn-tertiary {
+            background: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        body.light-theme .btn-tertiary:hover {
+            background: #f0f0f0;
+            border-color: #999;
+            color: #000;
+        }
+
+        body.light-theme .section-divider {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        body.light-theme .form-label-secondary {
+            color: #999;
+        }
+
+        body.light-theme .qualification-header {
+            color: #000;
+        }
+
+        body.light-theme .qualification-subtitle {
+            color: #666;
+        }
+
+        body.light-theme .result-section.literally-homeless {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.08);
+        }
+
+        body.light-theme .result-section.imminent-risk {
+            border-color: #ffa500;
+            background: rgba(255, 165, 0, 0.08);
+        }
+
+        body.light-theme .result-section.chronically-homeless {
+            border-color: #ff9e64;
+            background: rgba(255, 158, 100, 0.08);
+        }
+
+        body.light-theme .result-section.stably-housed {
+            border-color: #00d98e;
+            background: rgba(0, 217, 142, 0.08);
+        }
+
+        body.light-theme .result-section.unstably-housed {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.08);
+        }
+
+        /* Light theme for detail boxes */
+        body.light-theme #institutionDetails,
+        body.light-theme #exitOwnedRentalDetails,
+        body.light-theme #exitFriendsFamilyDetails,
+        body.light-theme #exitHotelDetails,
+        body.light-theme #exitInstitutionDetails,
+        body.light-theme #exitOtherDetails,
+        body.light-theme #entryDvFollowup,
+        body.light-theme #entryDvStatusHelp {
+            background: #f5f5f5 !important;
+        }
+
+        /* Light theme for DV override box */
+        body.light-theme #entryDvStatusHelp {
+            background: rgba(255, 107, 107, 0.08) !important;
+            border: 1px solid #ff6b6b !important;
+            border-left: 5px solid #ff6b6b !important;
+            color: #c7384e !important;
+        }
+
+        body.light-theme #entryDvStatusHelp div:first-child {
+            color: #c7384e !important;
+        }
+
+        body.light-theme #entryDvStatusHelp strong {
+            color: #8b1a31 !important;
+            font-weight: 700 !important;
+        }
+
+        /* Light theme for select dropdowns */
+        body.light-theme select {
+            background: #ffffff !important;
+            color: #333 !important;
+            border: 1px solid #ddd !important;
+        }
+
+        body.light-theme select option {
+            background: #ffffff;
+            color: #333;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -606,10 +872,7 @@
                 <div class="header-title">CoC Homeless Status Assessment Tool</div>
             </div>
             <div class="header-status">
-                <div class="status-item header-assessment">
-                    <div class="status-label">Assessment</div>
-                    <div class="status-value" id="assessmentStatus">PENDING</div>
-                </div>
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
             </div>
         </div>
 
@@ -700,10 +963,6 @@
                         <input type="radio" name="entry-literally" value="none-above" onchange="assessEntryStatus()">
                         <span><strong>None of the above</strong></span>
                     </label>
-                </div>
-
-                <div class="info-box">
-                    ✓ If yes to any criterion above, client is <strong>Literally Homeless</strong>
                 </div>
                 </div>
             </div>
@@ -798,7 +1057,7 @@
                 <div class="result-subtitle" id="entryResultCategory">Category</div>
                 <div class="result-details" id="entryResultDetails">Assessment details will appear here</div>
                 <div class="housing-recommendation" id="entryHousingRec" style="display: none;">
-                    <h3>ClientTrack Prior Living Situation</h3>
+                    <h3>Appropriate HMIS ClientTrack Prior Living Situation Selection</h3>
                     <ul id="entryHousingList"></ul>
                 </div>
             </div>
@@ -1080,7 +1339,7 @@
                 <div class="result-subtitle" id="exitResultCategory">Category</div>
                 <div class="result-details" id="exitResultDetails">Assessment details will appear here</div>
                 <div class="housing-recommendation" id="exitHousingRec" style="display: none;">
-                    <h3>ClientTrack Current Living Situation Selection</h3>
+                    <h3>Appropriate HMIS ClientTrack Current Living Situation Selection</h3>
                     <ul id="exitHousingList"></ul>
                 </div>
                 <div id="exitWarning"></div>
@@ -1090,18 +1349,18 @@
         <!-- BUTTONS -->
         <div class="bottom-buttons" id="bottomButtons" style="display: none;">
             <div class="bottom-actions">
-                <button class="btn-primary" onclick="completeAssessment()">Complete Assessment</button>
+                <button class="btn-primary" onclick="console.log('Button clicked'); completeAssessment()">Complete Assessment</button>
                 <button class="btn-tertiary" onclick="changeMode()">Start New Assessment</button>
             </div>
             <div class="usage-panel">
                 <div class="usage-summary">
                     <div class="usage-metric">
                         <span>Entry Uses</span>
-                        <strong id="entryExecutionCount">0</strong>
+                        <strong id="entryExecutionCount" style="cursor: pointer; user-select: none;">0</strong>
                     </div>
                     <div class="usage-metric">
                         <span>Exit Uses</span>
-                        <strong id="exitExecutionCount">0</strong>
+                        <strong id="exitExecutionCount" style="cursor: pointer; user-select: none;">0</strong>
                     </div>
                 </div>
             </div>
@@ -1138,16 +1397,27 @@
 
         // Initialize execution counters
         function initExecutionCounters() {
-            document.getElementById('entryExecutionCount').textContent = localStorage.getItem('hudEntryExecutionCount') || '0';
-            document.getElementById('exitExecutionCount').textContent = localStorage.getItem('hudExitExecutionCount') || '0';
+            const entryCount = localStorage.getItem('hudEntryExecutionCount') || '0';
+            const exitCount = localStorage.getItem('hudExitExecutionCount') || '0';
+            document.getElementById('entryExecutionCount').textContent = entryCount;
+            document.getElementById('exitExecutionCount').textContent = exitCount;
+            console.log('Counters initialized - Entry:', entryCount, 'Exit:', exitCount);
         }
 
         function incrementExecutionCounter(type) {
+            console.log('incrementExecutionCounter called with type:', type);
             const storageKey = type === 'entry' ? 'hudEntryExecutionCount' : 'hudExitExecutionCount';
             const elementId = type === 'entry' ? 'entryExecutionCount' : 'exitExecutionCount';
-            let count = parseInt(localStorage.getItem(storageKey) || '0', 10) + 1;
-            localStorage.setItem(storageKey, count);
-            document.getElementById(elementId).textContent = count;
+            const currentCount = parseInt(localStorage.getItem(storageKey) || '0', 10);
+            let newCount = currentCount + 1;
+            localStorage.setItem(storageKey, newCount);
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = newCount;
+                console.log('Counter incremented - Type:', type, 'Old count:', currentCount, 'New count:', newCount, 'Element ID:', elementId);
+            } else {
+                console.error('Element not found:', elementId);
+            }
         }
 
         function setElementDisplay(id, displayValue) {
@@ -1176,10 +1446,10 @@
 
         function changeMode() {
             clearForm();
-            setElementDisplay('modeSelector', 'block');
-            setElementDisplay('bottomButtons', 'none');
             document.getElementById('entryMode').classList.remove('active');
             document.getElementById('exitMode').classList.remove('active');
+            setElementDisplay('modeSelector', 'block');
+            setElementDisplay('bottomButtons', 'none');
             currentMode = null;
         }
 
@@ -1500,10 +1770,23 @@
 
         // COMPLETE ASSESSMENT
         function completeAssessment() {
+            console.log('completeAssessment called - currentMode:', currentMode);
             if (currentMode === 'entry') {
-                completeEntryAssessment();
+                console.log('Calling completeEntryAssessment');
+                const result = completeEntryAssessment();
+                if (result !== false) {
+                    console.log('Calling incrementExecutionCounter for entry');
+                    incrementExecutionCounter('entry');
+                }
             } else if (currentMode === 'exit') {
-                completeExitAssessment();
+                console.log('Calling completeExitAssessment');
+                const result = completeExitAssessment();
+                if (result !== false) {
+                    console.log('Calling incrementExecutionCounter for exit');
+                    incrementExecutionCounter('exit');
+                }
+            } else {
+                console.log('No valid currentMode set');
             }
         }
 
@@ -1519,13 +1802,15 @@
             let category, title, subtitle, details, categoryName, clientTrackHousing;
 
             if (entryState.dvAtRisk === null) {
+                console.log('Validation failed: DV question not answered');
                 alert('Please answer the domestic violence question.');
-                return;
+                return false;
             }
 
             if (entryState.dvAtRisk === true && !hasClientTrackSelection) {
+                console.log('Validation failed: DV at risk but no ClientTrack selection');
                 alert('Please select the client\'s prior living situation so the ClientTrack value can be populated.');
-                return;
+                return false;
             }
 
             if (isLiterallyHomeless || isDvQualified) {
@@ -1533,7 +1818,7 @@
                     if (entryState.literally === 'institution') {
                         if (!entryState.institutionType || entryState.institutionDays90plus === null) {
                             alert('Please select an institution type and answer the 90 days question.');
-                            return;
+                            return false;
                         }
                         clientTrackHousing = getInstitutionTypeLabel(entryState.institutionType);
                     } else if (entryState.literally === 'outside' || entryState.literally === 'structure' || entryState.literally === 'vehicle') {
@@ -1547,7 +1832,7 @@
 
                 if (!clientTrackHousing) {
                     alert('Please select the client\'s prior living situation so the ClientTrack value can be populated.');
-                    return;
+                    return false;
                 }
 
                 if (isDvImminentOverride) {
@@ -1564,7 +1849,7 @@
                             }
                         });
                         alert('Please answer all questions in the Chronic Homelessness Screening section.');
-                        return;
+                        return false;
                     }
                     
                     document.querySelectorAll('#entryStep3 .form-label').forEach(label => {
@@ -1597,7 +1882,7 @@
             } else if (noneOfAboveSelected) {
                 if (entryState.imminent === null) {
                     alert('Please answer where the client is currently staying.');
-                    return;
+                    return false;
                 }
 
                 if (entryState.loss14 === null || entryState.residence === null || entryState.resources === null) {
@@ -1607,7 +1892,7 @@
                         }
                     });
                     alert('Please answer all questions in the Imminent Risk section.');
-                    return;
+                    return false;
                 }
                 
                 document.querySelectorAll('#entryStep2 .form-label').forEach(label => {
@@ -1641,7 +1926,7 @@
                 }
             } else {
                 alert('Please select an option in the Prior Living Situation section.');
-                return;
+                return false;
             }
 
             document.getElementById('entryResult').className = `result-section show ${category}`;
@@ -1657,40 +1942,38 @@
             document.getElementById('entryQualTitle').className = `qualification-title ${category}`;
             document.getElementById('entryQualTitle').textContent = title;
 
-            document.getElementById('assessmentStatus').textContent = 'COMPLETE';
-
-            incrementExecutionCounter('entry');
             document.getElementById('entryResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            return true;
         }
         function completeExitAssessment() {
             if (!exitState.exitDestination) {
                 alert('Please select the client\'s current living situation at exit.');
-                return;
+                return false;
             }
 
             if (exitState.exitDestination === 'owned-rental' && !exitState.ownedRentalType) {
                 alert('Please select the owned or rental ClientTrack option.');
-                return;
+                return false;
             }
 
             if (exitState.exitDestination === 'institution' && !exitState.institutionType) {
                 alert('Please select the institution type.');
-                return;
+                return false;
             }
 
             if (exitState.exitDestination === 'other' && !exitState.otherExitType) {
                 alert('Please select the Other current living situation.');
-                return;
+                return false;
             }
 
             if (exitState.exitDestination === 'friends-family' && (!exitState.stayType || exitState.leaveDateKnown === null)) {
                 alert('Please choose whether the client is staying with friends or family and answer whether there is a date by which they need to leave.');
-                return;
+                return false;
             }
 
             if (exitState.exitDestination === 'hotel' && exitState.hotelPaidWithoutVoucher === null) {
                 alert('Please answer whether the hotel is paid for without an emergency shelter voucher.');
-                return;
+                return false;
             }
 
             let category, title, subtitle, details, categoryName;
@@ -1758,16 +2041,25 @@
             document.getElementById('exitResult').className = `result-section show ${category}`;
             document.getElementById('exitResultTitle').className = `result-title ${category}`;
             document.getElementById('exitResultTitle').textContent = title;
-            document.getElementById('exitResultCategory').textContent = categoryName;
             document.getElementById('exitResultDetails').className = `result-details ${category}`;
             document.getElementById('exitResultDetails').textContent = details;
 
             let housingOptions = [];
 
             if (exitState.exitDestination === 'friends-family') {
-                housingOptions = [
-                    exitState.stayType === 'friends' ? 'Staying with Friends' : 'Staying with Family'
-                ];
+                if (exitState.stayType === 'friends') {
+                    housingOptions = [
+                        exitState.leaveDateKnown === true 
+                            ? 'Staying or living with friends, temporary tenure (e.g., room, apartment or house)'
+                            : 'Staying or living with friends, permanent tenure'
+                    ];
+                } else if (exitState.stayType === 'family') {
+                    housingOptions = [
+                        exitState.leaveDateKnown === true
+                            ? 'Staying or living with family, temporary tenure (e.g., room, apartment or house)'
+                            : 'Staying or living with family, permanent tenure'
+                    ];
+                }
                 document.getElementById('exitWarning').innerHTML = exitState.leaveDateKnown
                     ? '<div class="warning-box"><strong>Warning:</strong> Client must leave current residence. This should be treated as an unstable housing situation.</div>'
                     : '';
@@ -1790,10 +2082,8 @@
             document.getElementById('exitQualTitle').className = `qualification-title ${category}`;
             document.getElementById('exitQualTitle').textContent = title;
 
-            document.getElementById('assessmentStatus').textContent = 'COMPLETE';
-
-            incrementExecutionCounter('exit');
             document.getElementById('exitResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            return true;
         }
 
         function clearForm() {
@@ -1856,12 +2146,85 @@
             document.getElementById('entryQualTitle').textContent = 'HUD ASSESSMENT';
             document.getElementById('exitQualTitle').className = 'qualification-title neutral-exit';
             document.getElementById('exitQualTitle').textContent = 'EXIT ASSESSMENT';
+        }
 
-            document.getElementById('assessmentStatus').textContent = 'PENDING';
+        // Theme Toggle Handler
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                localStorage.setItem('hudTheme', 'dark');
+                themeToggle.textContent = '🌙 Dark';
+            } else {
+                body.classList.add('light-theme');
+                localStorage.setItem('hudTheme', 'light');
+                themeToggle.textContent = '☀️ Light';
+            }
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('hudTheme') || 'light';
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (savedTheme === 'light') {
+                body.classList.add('light-theme');
+                themeToggle.textContent = '☀️ Light';
+            } else {
+                body.classList.remove('light-theme');
+                themeToggle.textContent = '🌙 Dark';
+            }
+        }
+
+        // Long-press reset functionality
+        let pressTimer;
+
+        function setupLongPressReset(elementId, counterType) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            element.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                
+                pressTimer = setTimeout(() => {
+                    resetCounter(counterType);
+                }, 7000);
+            });
+
+            element.addEventListener('mouseup', cleanupPress);
+            element.addEventListener('mouseleave', cleanupPress);
+            element.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                const mouseEvent = new MouseEvent('mousedown');
+                element.dispatchEvent(mouseEvent);
+            });
+            element.addEventListener('touchend', cleanupPress);
+            element.addEventListener('touchcancel', cleanupPress);
+        }
+
+        function cleanupPress() {
+            clearTimeout(pressTimer);
+        }
+
+        function resetCounter(type) {
+            const storageKey = type === 'entry' ? 'hudEntryExecutionCount' : 'hudExitExecutionCount';
+            const elementId = type === 'entry' ? 'entryExecutionCount' : 'exitExecutionCount';
+            
+            localStorage.removeItem(storageKey);
+            document.getElementById(elementId).textContent = '0';
         }
 
         // Initialize
+        initializeTheme();
         initExecutionCounters();
+        
+        // Setup long-press reset after page load
+        setTimeout(() => {
+            setupLongPressReset('entryExecutionCount', 'entry');
+            setupLongPressReset('exitExecutionCount', 'exit');
+        }, 100);
     </script>
 </body>
 </html>
